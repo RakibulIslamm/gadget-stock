@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import firebaseInitAuthentication from "../Firebase/firebaseInit";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, onAuthStateChanged, signOut, createUserWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, onAuthStateChanged, signOut, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 
 
 firebaseInitAuthentication();
@@ -18,30 +18,48 @@ const useFirebase = () => {
         return signInWithPopup(auth, googleProvider);
     }
 
-    // Email Pass Sign In
-    const login = (email, password) => {
+    // Email Sign In
+    const login = (email, password, reset) => {
+        setIsLoading(true)
         signInWithEmailAndPassword(auth, email, password)
             .then((result) => {
                 const user = result.user;
                 setUser(user)
+                reset();
             })
             .catch((error) => {
                 const errorMessage = error.message;
                 setError(errorMessage)
-            });
+            })
+            .finally(() => {
+                setIsLoading(false);
+            })
     }
 
     // Create User with  Email And Pass
-    const signUp = (email, password) => {
+    const signUp = (email, password, name, reset) => {
+        setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
             .then((result) => {
                 const user = result.user;
+                user.displayName = name;
+                updateProfile(auth.currentUser, { displayName: name })
+                    .then(() => {
+
+                    })
+                    .catch((error) => {
+                        setError(error.Message)
+                    })
                 setUser(user)
+                reset();
             })
             .catch((error) => {
                 const errorMessage = error.message;
                 setError(errorMessage)
-            });
+            })
+            .finally(() => {
+                setIsLoading(false)
+            })
     }
 
     // Current User
