@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Blog from "./Pages/Blog/Blog";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
-import ManageInventory from "./Pages/ManageInventory/ManageInventory";
+import InventoryDetails from "./Pages/InventoryDetails/InventoryDetails";
 import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 import PrivateRoute from "./Pages/PrivateRoute/PrivateRoute";
 import Register from "./Pages/Register/Register";
@@ -22,8 +22,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/blogs" element={<Blog />} />
-        <Route path="/manage-inventory" element={<PrivateRoute>
-          <ManageInventory />
+        <Route path="/inventory-details/:id" element={<PrivateRoute>
+          <InventoryDetails />
         </PrivateRoute>} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>

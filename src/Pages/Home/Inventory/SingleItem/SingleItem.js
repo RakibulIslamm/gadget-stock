@@ -1,12 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const SingleItem = ({ product }) => {
     console.log(product);
-    const { name, img, shortDesc, category, price, quantity, supplierName } = product
+    const { _id, name, img, shortDesc, category, price, quantity, supplierName } = product
     return (
         <div className='flex justify-between items-center flex-col border shadow-lg relative'>
             <div className='px-10 pt-10'>
-                <img className='self-center' src={img} alt="" />
+                <img src={img} alt="" />
             </div>
             <div>
                 <div className='px-10 pt-10'>
@@ -20,7 +21,7 @@ const SingleItem = ({ product }) => {
                     </div>
                 </div>
             </div>
-            <button className='block py-2 text-center bg-yellow-400 w-full'>Order Now</button>
+            <Link to={`/inventory-details/${_id}`} className='block py-2 text-center bg-yellow-400 w-full'>Order Now</Link>
         </div>
     );
 };
