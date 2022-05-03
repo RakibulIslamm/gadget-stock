@@ -1,17 +1,18 @@
 import React from 'react';
 import useAuth from '../../hooks/useAuth';
 import Banner from './Banner/Banner';
+import Inventory from './Inventory/Inventory';
 
 const Home = () => {
 
-    const { user, googleSignIn } = useAuth();
+    const { user } = useAuth();
 
     console.log(user);
 
     return (
-        <div className='pt-20'>
+        <div className=''>
             <Banner />
-            <button onClick={googleSignIn}>Google Signin</button>
+            <Inventory />
         </div>
     );
 };

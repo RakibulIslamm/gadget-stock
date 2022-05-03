@@ -1,23 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AiFillGoogleCircle } from 'react-icons/ai'
 import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    const { login, error, isLoading } = useAuth();
+    const { googleSignIn, login, error, setError, isLoading } = useAuth();
+    const location = useLocation();
+    const navigate = useNavigate();
+    let from = location.state?.from?.pathname || "/";
+
+    useEffect(() => {
+        setError('');
+    }, [setError])
 
     const onSubmit = data => {
         const email = data.email;
         const pass = data.password;
-        login(email, pass, reset);
+        login(email, pass, location, navigate, reset)
     };
 
+    const googleLogin = () => {
+        googleSignIn()
+            .then((result) => {
+                console.log(result.user);
+                navigate(from, { replace: true });
+            })
+    }
+
+    console.log(error);
 
     return (
-        <div className='flex justify-center items-center min-h-screen py-36'>
+        <div className='flex justify-center items-center min-h-screen py-36 -mt-20'>
             <div className='w-4/12'>
                 <h1 className='text-2xl font-semibold text-center py-4'>Please Login</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -35,7 +51,8 @@ const Login = () => {
                             </label>
                             <input {...register("password", { required: true })} className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3" type="password" placeholder="Password" />
                             {errors.password && <span className=' text-xs italic text-red-600'>This field is required</span>}
-                            {/* <p className="text-red text-xs italic">Please choose a password.</p> */}
+                            <br />
+                            <p className="text-red text-xs italic text-red-600">{error}</p>
                             <button className="inline-block align-baseline text-sm text-blue hover:text-blue-800">
                                 Forgot Password?
                             </button>
@@ -50,7 +67,7 @@ const Login = () => {
                         </div>
                     </div>
                 </form>
-                <button className='border border-gray-300 px-5 py-2 mx-auto flex items-center gap-2 rounded-full'><AiFillGoogleCircle className=' text-2xl text-red-500' />Login With Google</button>
+                <button onClick={googleLogin} className='border border-gray-300 px-5 py-2 mx-auto flex items-center gap-2 rounded-full'><AiFillGoogleCircle className=' text-2xl text-red-500' />Login With Google</button>
             </div>
         </div >
     );

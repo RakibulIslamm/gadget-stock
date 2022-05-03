@@ -8,8 +8,8 @@ import useAuth from '../../../hooks/useAuth';
 const Header = () => {
     const { user, logOut } = useAuth();
     return (
-        <div className='-mb-20'>
-            <div className=' px-[80px] h-20 flex items-center justify-between'>
+        <div className=''>
+            <div className=' px-[80px] h-20 max-w-[1920px] mx-auto flex items-center justify-between'>
                 <Link to='/'>
                     <div className='flex items-center'>
                         <img src={logo} alt="" className="w-16 h-16" />

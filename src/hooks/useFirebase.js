@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import firebaseInitAuthentication from "../Firebase/firebaseInit";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, onAuthStateChanged, signOut, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { toast } from "react-toastify";
 
 
 firebaseInitAuthentication();
@@ -19,12 +20,14 @@ const useFirebase = () => {
     }
 
     // Email Sign In
-    const login = (email, password, reset) => {
-        setIsLoading(true)
+    const login = (email, password, location, navigate, reset) => {
+        setIsLoading(true);
+        setError('');
         signInWithEmailAndPassword(auth, email, password)
             .then((result) => {
-                const user = result.user;
-                setUser(user)
+                setUser(result.user)
+                const url = location?.state?.from || '/';
+                navigate(url);
                 reset();
             })
             .catch((error) => {
@@ -37,7 +40,7 @@ const useFirebase = () => {
     }
 
     // Create User with  Email And Pass
-    const signUp = (email, password, name, reset) => {
+    const signUp = (email, password, name, reset, navigate) => {
         setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
             .then((result) => {
@@ -51,6 +54,8 @@ const useFirebase = () => {
                         setError(error.Message)
                     })
                 setUser(user)
+                toast.success('Account Created Successfully');
+                navigate('/')
                 reset();
             })
             .catch((error) => {

@@ -1,19 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { AiFillGoogleCircle } from 'react-icons/ai'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 const Register = () => {
 
-    const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
-    const { user, signUp, error, isLoading } = useAuth();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const { user, signUp, error, setError, isLoading } = useAuth();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        setError('');
+    }, [setError])
 
     const onSubmit = data => {
         const name = data.name;
         const email = data.email;
         const pass = data.password;
-        signUp(email, pass, name, reset)
+        signUp(email, pass, name, reset, navigate)
     };
 
     console.log(user?.displayName);
@@ -22,7 +27,7 @@ const Register = () => {
 
     return (
         <div>
-            <div className='flex justify-center items-center min-h-screen py-36'>
+            <div className='flex justify-center items-center min-h-screen py-36 -mt-20'>
                 <div className='w-4/12'>
                     <h1 className='text-2xl font-semibold text-center py-4'>Please Register An Account</h1>
                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -49,7 +54,7 @@ const Register = () => {
                                 </label>
                                 <input {...register("password", { required: true })} className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3" type="password" placeholder="Password" />
                                 {errors.password && <span className=' text-xs italic text-red-600'>This field is required</span>}
-                                {/* <p className="text-red text-xs italic">Please choose a password.</p> */}
+                                <p className="text-red text-xs italic text-red-600">{error}</p>
                             </div>
                             {/* =============================================== */}
                             <div className="flex items-center justify-between">
