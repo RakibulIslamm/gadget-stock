@@ -11,6 +11,8 @@ import Register from "./Pages/Register/Register";
 import Footer from "./Pages/Shared/Footer/Footer";
 import Header from "./Pages/Shared/Header/Header";
 import AddProduct from "./AddProduct/AddProduct";
+import ManageInventory from "./ManageInventory/ManageInventory";
+import MyProduct from "./MyProduct/MyProduct";
 
 function App() {
   return (
@@ -28,6 +30,12 @@ function App() {
         </PrivateRoute>} />
         <Route path="/add-product" element={<PrivateRoute>
           <AddProduct />
+        </PrivateRoute>} />
+        <Route path="/manage-inventory" element={<PrivateRoute>
+          <ManageInventory />
+        </PrivateRoute>} />
+        <Route path="/my-product" element={<PrivateRoute>
+          <MyProduct />
         </PrivateRoute>} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
