@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import useAuth from '../../../hooks/useAuth';
 import SingleItem from './SingleItem/SingleItem';
 
 const Inventory = () => {
 
     const [products, setProducts] = useState([]);
+    const { isLoading } = useAuth()
 
     useEffect(() => {
         fetch('http://localhost:5000/products')
             .then(res => res.json())
             .then(data => {
-                setProducts(data);
+                setProducts(data.reverse());
             })
     }, []);
+
+    console.log(products);
 
     return (
         <div className='mt-5'>

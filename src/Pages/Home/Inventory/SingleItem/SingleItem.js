@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const SingleItem = ({ product }) => {
-    console.log(product);
     const { _id, name, img, shortDesc, category, price, quantity, supplierName } = product
     return (
         <div className='flex justify-between items-center flex-col border shadow-lg relative'>

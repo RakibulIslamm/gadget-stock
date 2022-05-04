@@ -10,6 +10,7 @@ import PrivateRoute from "./Pages/PrivateRoute/PrivateRoute";
 import Register from "./Pages/Register/Register";
 import Footer from "./Pages/Shared/Footer/Footer";
 import Header from "./Pages/Shared/Header/Header";
+import AddProduct from "./AddProduct/AddProduct";
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
         <Route path="/blogs" element={<Blog />} />
         <Route path="/inventory-details/:id" element={<PrivateRoute>
           <InventoryDetails />
+        </PrivateRoute>} />
+        <Route path="/add-product" element={<PrivateRoute>
+          <AddProduct />
         </PrivateRoute>} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
