@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import useAuth from '../../../hooks/useAuth';
 import SingleItem from './SingleItem/SingleItem';
 
 const Inventory = () => {
 
     const [products, setProducts] = useState([]);
-    const { isLoading } = useAuth()
 
     useEffect(() => {
         fetch('http://localhost:5000/products')
@@ -14,8 +12,6 @@ const Inventory = () => {
                 setProducts(data.reverse());
             })
     }, []);
-
-    console.log(products);
 
     return (
         <div className='mt-5'>

@@ -12,7 +12,7 @@ import Footer from "./Pages/Shared/Footer/Footer";
 import Header from "./Pages/Shared/Header/Header";
 import AddProduct from "./AddProduct/AddProduct";
 import ManageInventory from "./ManageInventory/ManageInventory";
-import MyProduct from "./MyProduct/MyProduct";
+import MyProduct from "./Pages/MyProduct/MyProduct";
 
 function App() {
   return (

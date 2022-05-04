@@ -5,9 +5,16 @@ import Inventory from './Inventory/Inventory';
 
 const Home = () => {
 
-    const { user } = useAuth();
+    const { user, isLoading } = useAuth();
 
-    console.log(user);
+    // console.log(user);
+
+    if (isLoading) {
+        console.log('Loading...');
+    }
+    else {
+        console.log(user);
+    }
 
     return (
         <div className=''>
