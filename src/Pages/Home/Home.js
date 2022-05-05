@@ -1,5 +1,6 @@
 import BrandSection from '../../BrandSection/BrandSection';
 import useAuth from '../../hooks/useAuth';
+import NewsLetter from '../../NewsLetter/NewsLetter';
 import Banner from './Banner/Banner';
 import Inventory from './Inventory/Inventory';
 
@@ -21,6 +22,7 @@ const Home = () => {
             <Banner />
             <Inventory />
             <BrandSection />
+            <NewsLetter />
         </div>
     );
 };

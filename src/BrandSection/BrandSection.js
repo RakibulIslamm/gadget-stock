@@ -12,7 +12,7 @@ const BrandSection = () => {
     return (
         <div className='px-[80px] max-w-[1920px] mx-auto py-20'>
             <div className='flex justify-between items-center'>
-                {images.map(img => <img className=' w-36' src={img} alt="" />)}
+                {images.map(img => <img className=' w-36 opacity-60 hover:opacity-100 transition-all ease-in-out duration-200 cursor-pointer' src={img} alt="" />)}
             </div>
         </div>
     );
