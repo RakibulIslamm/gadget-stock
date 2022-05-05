@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import Alert from '../../Alert/Alert';
 import useAuth from '../../hooks/useAuth';
 import SingleProduct from './SingleProduct/SingleProduct';
+import { confirmAlert } from 'react-confirm-alert'; // Import
 
 const MyProduct = () => {
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
     const { user } = useAuth();
 
     useEffect(() => {
@@ -14,12 +18,46 @@ const MyProduct = () => {
         })
             .then(res => res.json())
             .then(data => {
-                setProducts(data);
-            });
+                setProducts(data.reverse());
+            })
+            .finally(() => {
+                setLoading(false);
+            })
     }, [user]);
 
     if (!user) {
         return;
+    }
+
+    // Delete Product
+    const handleDelete = (id) => {
+        const handleAlert = (close, confirmation) => {
+            if (confirmation) {
+                fetch(`http://localhost:5000/products/${id}`, {
+                    method: 'DELETE'
+                }).then(res => res.json())
+                    .then(result => {
+                        if (result.deletedCount === 1) {
+                            const restProducts = products.filter(product => product._id !== id);
+                            setProducts(restProducts);
+                            toast('Successfully Deleted');
+                        }
+                        else { console.log('error') }
+                    });
+            }
+            else {
+
+                close();
+            }
+            close();
+        }
+        confirmAlert({
+            customUI: ({ onClose }) => {
+                return (
+                    <Alert onClose={onClose} handleAlert={handleAlert} />
+                )
+            }
+        });
     }
 
     console.log(products);
@@ -40,9 +78,21 @@ const MyProduct = () => {
                                 <th className="font-semibold text-sm uppercase px-6 py-4"> </th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-gray-200">
-                            {products.map(product => <SingleProduct key={product._id} product={product} />)}
-                        </tbody>
+                        {loading ? <tbody className="divide-y divide-gray-200">
+                            <tr>
+                                <td className="px-6 py-4">
+                                    <p className="text-gray-500 text-xl font-semibold tracking-wide"> Loading... </p>
+                                </td>
+                            </tr>
+                        </tbody> : !products.length ? <tbody className="divide-y divide-gray-200">
+                            <tr>
+                                <td className="px-6 py-4">
+                                    <p className="text-gray-500 text-xl font-semibold tracking-wide"> You Have No Product</p>
+                                </td>
+                            </tr>
+                        </tbody> : <tbody className="divide-y divide-gray-200">
+                            {products.map(product => <SingleProduct key={product._id} product={product} handleDelete={handleDelete} />)}
+                        </tbody>}
                     </table>
                 </div>
             </div>

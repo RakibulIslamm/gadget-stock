@@ -74,7 +74,7 @@ const InventoryDetails = () => {
                         <p className='text-xl font-bold border-r pr-5'>Price: ${price}</p>
                         <p className={`text-lg font-semibold px-5 border-r ${quantity <= 3 ? 'text-red-600' : 'text-green-600'}`}>{quantity === 0 ? 'Sold Out' : quantity === 1 ? quantity + ' Item Left' : quantity + ' Items Left'}</p>
                         {
-                            quantity <= 0 ? <button className='px-5 py-2 text-center bg-gray-300 mx-5 cursor-not-allowed' disabled>Delivered</button> : <button onClick={handleDelivered} className='px-5 py-2 text-center bg-yellow-400 mx-5'>Delivered</button>
+                            quantity <= 0 ? <button className='px-5 py-2 text-center bg-gray-300 mx-5 cursor-not-allowed' disabled>Delivered</button> : <button onClick={handleDelivered} className='px-5 py-2 text-center bg-yellow-400 active:bg-yellow-200 mx-5'>Delivered</button>
                         }
                     </div>
                     <form onSubmit={handleRestock}>

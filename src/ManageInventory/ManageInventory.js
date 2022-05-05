@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import SingleInventory from './SingleInventory/SingleInventory';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import Alert from '../Alert/Alert';
 
 const ManageInventory = () => {
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetch('http://localhost:5000/products')
@@ -11,24 +14,39 @@ const ManageInventory = () => {
             .then(data => {
                 setProducts(data.reverse());
             })
+            .finally(() => {
+                setLoading(false);
+            });
     }, []);
 
     const handleDelete = (id) => {
-        const confirm = window.confirm('Are you sure you want to delete this item?');
-        if (confirm) {
-            fetch(`http://localhost:5000/products/${id}`, {
-                method: 'DELETE'
-            }).then(res => res.json())
-                .then(result => {
-                    console.log(result);
-                    if (result.deletedCount === 1) {
-                        const restProducts = products.filter(product => product._id !== id);
-                        setProducts(restProducts);
-                        toast('Successfully Deleted');
-                    }
-                }
-                );
+        const handleAlert = (close, confirmation) => {
+            if (confirmation) {
+                fetch(`http://localhost:5000/products/${id}`, {
+                    method: 'DELETE'
+                }).then(res => res.json())
+                    .then(result => {
+                        if (result.deletedCount === 1) {
+                            const restProducts = products.filter(product => product._id !== id);
+                            setProducts(restProducts);
+                            toast('Successfully Deleted');
+                        }
+                        else { console.log('error') }
+                    });
+            }
+            else {
+
+                close();
+            }
+            close();
         }
+        confirmAlert({
+            customUI: ({ onClose }) => {
+                return (
+                    <Alert onClose={onClose} handleAlert={handleAlert} />
+                )
+            }
+        });
     }
 
 
@@ -47,9 +65,23 @@ const ManageInventory = () => {
                                 <th className="font-semibold text-sm uppercase px-6 py-4"> </th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-gray-200">
-                            {products.map(product => <SingleInventory key={product._id} product={product} handleDelete={handleDelete} />)}
-                        </tbody>
+                        {
+                            loading ? <tbody className="divide-y divide-gray-200">
+                                <tr>
+                                    <td className="px-6 py-4">
+                                        <p className="text-gray-500 text-xl font-semibold tracking-wide"> Loading... </p>
+                                    </td>
+                                </tr>
+                            </tbody> : !products.length ? <tbody className="divide-y divide-gray-200">
+                                <tr>
+                                    <td className="px-6 py-4">
+                                        <p className="text-gray-500 text-xl font-semibold tracking-wide"> Product Not Found </p>
+                                    </td>
+                                </tr>
+                            </tbody> : <tbody className="divide-y divide-gray-200">
+                                {products.map(product => <SingleInventory key={product._id} product={product} handleDelete={handleDelete} />)}
+                            </tbody>
+                        }
                     </table>
                 </div>
             </div>

@@ -17,12 +17,12 @@ const Header = () => {
                     </div>
                 </Link>
                 <div className='flex items-center gap-10'>
-                    <div className='flex items-center gap-5'>
+                    <div className='flex items-center gap-5 text-sm'>
                         <Link to='/'>Home</Link>
                         <Link to='/Blogs'>Blogs</Link>
-                        {user && <Link to='/manage-inventory'>Manage Inventory</Link>}
-                        {user && <Link to='/add-product'>Add A Product</Link>}
                         {user && <Link to='/my-product'>My Product</Link>}
+                        {user && <Link to='/add-product'>Add A Product</Link>}
+                        {user && <Link to='/manage-inventory'>Manage Inventory</Link>}
                         {!user && <Link to='/login'>Login</Link>}
                         {!user && <Link to='/register'>Register</Link>}
                     </div>
