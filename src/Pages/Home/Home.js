@@ -1,3 +1,4 @@
+import BrandSection from '../../BrandSection/BrandSection';
 import useAuth from '../../hooks/useAuth';
 import Banner from './Banner/Banner';
 import Inventory from './Inventory/Inventory';
@@ -19,6 +20,7 @@ const Home = () => {
         <div className=''>
             <Banner />
             <Inventory />
+            <BrandSection />
         </div>
     );
 };
