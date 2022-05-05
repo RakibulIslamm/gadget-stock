@@ -1,10 +1,10 @@
 import React from 'react';
-import brand1 from '../images/Brand/1.png'
-import brand2 from '../images/Brand/2.png';
-import brand3 from '../images/Brand/3.png';
-import brand4 from '../images/Brand/4.png';
-import brand5 from '../images/Brand/5.png';
-import brand6 from '../images/Brand/6.png';
+import brand1 from '../../images/Brand/1.png'
+import brand2 from '../../images/Brand/2.png';
+import brand3 from '../../images/Brand/3.png';
+import brand4 from '../../images/Brand/4.png';
+import brand5 from '../../images/Brand/5.png';
+import brand6 from '../../images/Brand/6.png';
 
 const images = [brand1, brand2, brand3, brand4, brand5, brand6];
 
