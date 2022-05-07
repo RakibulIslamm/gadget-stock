@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import firebaseInitAuthentication from "../Firebase/firebaseInit";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, onAuthStateChanged, signOut, createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from 'firebase/auth'
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, onAuthStateChanged, signOut, createUserWithEmailAndPassword, updateProfile, sendEmailVerification, sendPasswordResetEmail } from 'firebase/auth'
 import { toast } from "react-toastify";
 
 
@@ -27,8 +27,17 @@ const useFirebase = () => {
             .then((result) => {
                 setUser(result.user)
                 const url = location?.state?.from || '/';
-                navigate(url);
-                reset();
+                fetch('http://localhost:5000/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('token', data.token);
+                        navigate(url);
+                        reset();
+                    })
             })
             .catch((error) => {
                 const errorMessage = error.message;
@@ -37,6 +46,22 @@ const useFirebase = () => {
             .finally(() => {
                 setIsLoading(false);
             })
+    }
+
+    // Reset Password
+    const resetPassword = (email) => {
+        setError('');
+        sendPasswordResetEmail(auth, email)
+            .then(() => {
+                toast.success('Password reset email sent successfully');
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                setError(errorMessage)
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
     }
 
     // Create User with  Email And Pass
@@ -97,8 +122,10 @@ const useFirebase = () => {
         error, setError,
         googleSignIn,
         login,
+        resetPassword,
         signUp,
         isLoading,
+        setIsLoading,
         logOut
     }
 

@@ -10,9 +10,9 @@ const images = [brand1, brand2, brand3, brand4, brand5, brand6];
 
 const BrandSection = () => {
     return (
-        <div className='px-[80px] max-w-[1920px] mx-auto py-20'>
-            <div className='flex justify-between items-center'>
-                {images.map(img => <img className=' w-36 opacity-60 hover:opacity-100 transition-all ease-in-out duration-200 cursor-pointer' src={img} alt="" />)}
+        <div className='px-[80px] xs:px-4 max-w-[1920px] mx-auto py-20'>
+            <div className='flex justify-between items-center xs:flex-wrap sm:flex-wrap'>
+                {images.map(img => <img key={img} className=' w-36 xs:w-20 sm:w-24 opacity-60 hover:opacity-100 transition-all ease-in-out duration-200 cursor-pointer' src={img} alt="" />)}
             </div>
         </div>
     );

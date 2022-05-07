@@ -1,36 +1,43 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AiFillGoogleCircle } from 'react-icons/ai'
 import useAuth from '../../hooks/useAuth';
+import { ScaleLoader } from 'react-spinners';
 
 const Login = () => {
-
+    const [email, setEmail] = useState('')
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    const { googleSignIn, login, error, setError, isLoading } = useAuth();
+    const { googleSignIn, login, resetPassword, error, setError, isLoading } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
     let from = location.state?.from?.pathname || "/";
+
+    // const { user } = useAuth()
 
     useEffect(() => {
         setError('');
     }, [setError])
 
-    const onSubmit = data => {
+    // Handled Login
+    const onSubmit = async data => {
         const email = data.email;
         const pass = data.password;
-        login(email, pass, location, navigate, reset)
+        await login(email, pass, location, navigate, reset);
     };
 
+    // Handled Google SignIn
     const googleLogin = () => {
         googleSignIn()
             .then((result) => {
-                console.log(result.user);
                 navigate(from, { replace: true });
             })
     }
 
-    console.log(error);
+    // Handle Reset Password
+    const onReset = () => {
+        resetPassword(email);
+    }
 
     return (
         <div className='flex justify-center items-center min-h-screen py-36 -mt-20'>
@@ -42,7 +49,7 @@ const Login = () => {
                             <label className="block text-grey-darker text-sm font-bold mb-2">
                                 Email
                             </label>
-                            <input {...register("email", { required: true })} className="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" type="text" placeholder="Email" />
+                            <input {...register("email", { required: true })} className="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
                             {errors.email && <span className=' text-xs italic text-red-600'>This field is required</span>}
                         </div>
                         <div className="mb-6">
@@ -53,13 +60,13 @@ const Login = () => {
                             {errors.password && <span className=' text-xs italic text-red-600'>This field is required</span>}
                             <br />
                             <p className="text-red text-xs italic text-red-600">{error}</p>
-                            <button className="inline-block align-baseline text-sm text-blue hover:text-blue-800">
+                            <button onClick={onReset} className="inline-block align-baseline text-sm text-blue hover:text-blue-800" type='button'>
                                 Forgot Password?
                             </button>
                         </div>
                         <div className="flex items-center justify-between">
                             <button className="bg-blue-500 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded" type="submit">
-                                {isLoading ? 'loading...' : 'Login'}
+                                {isLoading ? <ScaleLoader color='#fff' height={10} speedMultiplier={2} /> : 'Login'}
                             </button>
                             <Link className="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker" to='/register'>
                                 Don't have an account?

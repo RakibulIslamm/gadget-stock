@@ -20,7 +20,7 @@ const SingleItem = ({ product }) => {
                     </div>
                 </div>
             </div>
-            <Link to={`/inventory-details/${_id}`} className='block py-2 text-center bg-yellow-400 w-full'>Order Now</Link>
+            <Link to={`/inventory-details/${_id}`} className='block py-2 text-center bg-orange-600 text-white w-full'>Update Inventory</Link>
         </div>
     );
 };

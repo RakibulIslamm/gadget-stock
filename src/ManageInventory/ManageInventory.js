@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import SingleInventory from './SingleInventory/SingleInventory';
-import { confirmAlert } from 'react-confirm-alert'; // Import
+import { confirmAlert } from 'react-confirm-alert';
+import { BiPlus } from 'react-icons/bi'
 import Alert from '../Alert/Alert';
+import { Link } from 'react-router-dom';
 
 const ManageInventory = () => {
     const [products, setProducts] = useState([]);
@@ -52,9 +54,12 @@ const ManageInventory = () => {
 
 
     return (
-        <div>
-            <div className='px-[80px] max-w-[1920px] mx-auto'>
-                <h2 className='my-5 text-2xl font-semibold'>Manage Inventory</h2>
+        <div className='min-h-screen'>
+            <div className='px-[80px] xs:px-4 sm:px-10 max-w-[1920px] mx-auto'>
+                <div className='my-5 flex items-center gap-5'>
+                    <h2 className='text-2xl font-semibold'>Manage Inventory</h2>
+                    <Link to='/add-product' className='px-5 py-1 bg-blue-500 text-white rounded-full flex items-center'>Add New Item <BiPlus /></Link>
+                </div>
                 <div className='overflow-x-auto border'>
                     <table className='mx-auto w-full whitespace-nowrap rounded-lg bg-white divide-y divide-gray-300'>
                         <thead className="bg-gray-900">

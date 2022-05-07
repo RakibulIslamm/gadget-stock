@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
+import { ScaleLoader } from 'react-spinners';
 import useAuth from '../../hooks/useAuth';
 
 const PrivateRoute = ({ children }) => {
@@ -7,7 +8,9 @@ const PrivateRoute = ({ children }) => {
     let location = useLocation();
 
     if (isLoading) {
-        return
+        return <div className='flex justify-center items-center min-h-screen'>
+            <ScaleLoader color='orange' height={25} speedMultiplier={2} />
+        </div>
     }
 
     if (!user) {

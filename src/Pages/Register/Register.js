@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { AiFillGoogleCircle } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom';
+import { ScaleLoader } from 'react-spinners';
 import useAuth from '../../hooks/useAuth';
 
 const Register = () => {
@@ -59,7 +60,7 @@ const Register = () => {
                             {/* =============================================== */}
                             <div className="flex items-center justify-between">
                                 <button className="bg-blue-500 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded" type="submit">
-                                    {isLoading ? 'loading...' : 'Register'}
+                                    {isLoading ? <ScaleLoader color='#fff' height={10} /> : 'Register'}
                                 </button>
                                 <Link className="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker" to='/login'>
                                     Already have an account?

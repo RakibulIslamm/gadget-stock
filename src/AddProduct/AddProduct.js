@@ -26,7 +26,7 @@ const AddProduct = () => {
     };
 
     return (
-        <div className='py-10'>
+        <div className='py-10 xs:px-4 sm:px-10'>
             <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-2xl mx-auto mt-5">
                 <h1 className='text-2xl font-semibold pb-5'>Please Add A product</h1>
                 <div className="w-full md:w-full mb-6 md:mb-0">
@@ -113,7 +113,7 @@ const AddProduct = () => {
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                         Supplier Name
                     </label>
-                    <input {...register("supplierName", { required: true })} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" value={user.displayName} name='displayName' readOnly />
+                    <input {...register("supplierName", { required: true })} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" value={user.displayName} name='displayName' />
                 </div>
                 <button className='py-2 text-center bg-yellow-400 relative block w-full' type='submit'>Add</button>
             </form>

@@ -3,7 +3,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const Alert = ({ onClose, handleAlert }) => {
     return (
-        <div className='bg-red-600 w-[400px] p-10 text-white'>
+        <div className='bg-red-600 w-[400px] xs:w-11/12 xs:mx-auto p-10 text-white'>
             <h1 className='text-2xl font-semibold'>Are you sure?</h1>
             <p className='text-lg'>You want to <b className='text-xl'>delete</b> this item?</p>
             <div className='flex items-center gap-2 pt-4'>

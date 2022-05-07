@@ -29,7 +29,6 @@ const InventoryDetails = () => {
         })
             .then(res => res.json())
             .then(result => {
-                console.log(result);
                 if (result.modifiedCount === 1) {
                     toast(stockQuantity + ' Items Added');
                     setProduct({ ...product, quantity: totalStock });
@@ -50,7 +49,6 @@ const InventoryDetails = () => {
         })
             .then(res => res.json())
             .then(result => {
-                console.log(result);
                 if (result.modifiedCount === 1) {
                     toast('Successfully Delivered');
                     setProduct({ ...product, quantity: totalStock });
@@ -61,20 +59,20 @@ const InventoryDetails = () => {
 
 
     return (
-        <div className='px-[80px] max-w-[1920px] mx-auto'>
-            <div className='flex items-start mt-20 gap-10 relative'>
+        <div className='px-[80px] xs:px-4 sm:px-10 max-w-[1920px] mx-auto'>
+            <div className='flex items-start xs:flex-col mt-20 gap-10 relative'>
                 <img className='w-[400px] border' src={img} alt="" />
                 <p className=' absolute top-5 left-0 bg-red-500 text-white px-3 py-1 text-sm font-light'>{category}</p>
                 <div className='text-sm space-y-3'>
-                    <h1 className='text-2xl'>{name}</h1>
+                    <h1 className='text-2xl xs:text-lg'>{name}</h1>
                     <p className='text-xs font-semibold'>by {supplierName}</p>
                     <p className='font-semibold'>{shortDesc}</p>
                     <p><b>Details: </b>{desc}</p>
-                    <div className='flex items-center'>
-                        <p className='text-xl font-bold border-r pr-5'>Price: ${price}</p>
-                        <p className={`text-lg font-semibold px-5 border-r ${quantity <= 3 ? 'text-red-600' : 'text-green-600'}`}>{quantity === 0 ? 'Sold Out' : quantity === 1 ? quantity + ' Item Left' : quantity + ' Items Left'}</p>
+                    <div className='flex items-center xs:flex-col xs:items-start xs:gap-1'>
+                        <p className='text-xl font-bold border-r xs:border-0 pr-5'>Price: ${price}</p>
+                        <p className={`text-lg font-semibold px-5 xs:p-0 border-r xs:border-0 ${quantity <= 3 ? 'text-red-600' : 'text-green-600'}`}>{quantity === 0 ? 'Sold Out' : quantity === 1 ? quantity + ' Item Left' : quantity + ' Items Left'}</p>
                         {
-                            quantity <= 0 ? <button className='px-5 py-2 text-center bg-gray-300 mx-5 cursor-not-allowed' disabled>Delivered</button> : <button onClick={handleDelivered} className='px-5 py-2 text-center bg-yellow-400 active:bg-yellow-200 mx-5'>Delivered</button>
+                            quantity <= 0 ? <button className='px-5 py-2 text-center bg-gray-300 mx-5 xs:mx-0 cursor-not-allowed' disabled>Delivered</button> : <button onClick={handleDelivered} className='px-5 py-2 text-center bg-yellow-400 active:bg-yellow-200 mx-5 xs:mx-0'>Delivered</button>
                         }
                     </div>
                     <form onSubmit={handleRestock}>

@@ -6,51 +6,51 @@ import { IoLogoFacebook, IoLogoInstagram, IoLogoTwitter, IoLogoLinkedin } from '
 
 const Footer = () => {
     return (
-        <div className='mt-10'>
-            <div className='px-[80px] max-w-[1920px] mx-auto py-10'>
-                <div className='mb-4 flex justify-between items-center'>
+        <div className='bg-gray-100 mt-6'>
+            <div className='px-[80px] xs:px-4 sm:px-10 max-w-[1920px] mx-auto py-10'>
+                <div className='mb-4 flex justify-between items-center xs:flex-col'>
                     <Link to='/'>
-                        <div className='flex items-center p'>
-                            <img src={logo} alt="" className="w-16 h-16" />
-                            <h1 className='text-2xl'>Gadget Stock</h1>
+                        <div className='flex items-center'>
+                            <img src={logo} alt="" className="w-16 h-16 xs:w-10 xs:h-10" />
+                            <h1 className='text-2xl xs:text-lg'>Gadget Stock</h1>
                         </div>
                     </Link>
                     <div className='flex items-center gap-4'>
-                        <Link to='https://facebook.com' target='_blank'><IoLogoFacebook className='text-2xl text-orange-600' /></Link>
-                        <Link to='https://twitter.com' target='_blank'><IoLogoTwitter className='text-2xl text-orange-600' /></Link>
-                        <Link to='https://instagram.com' target='_blank'><IoLogoInstagram className='text-2xl text-orange-600' /></Link>
-                        <Link to='https://linkedin.com' target='_blank'><IoLogoLinkedin className='text-2xl text-orange-600' /></Link>
+                        <Link to='https://facebook.com' target='_blank'><IoLogoFacebook className='text-2xl xs:text-lg text-orange-600' /></Link>
+                        <Link to='https://twitter.com' target='_blank'><IoLogoTwitter className='text-2xl xs:text-lg text-orange-600' /></Link>
+                        <Link to='https://instagram.com' target='_blank'><IoLogoInstagram className='text-2xl xs:text-lg text-orange-600' /></Link>
+                        <Link to='https://linkedin.com' target='_blank'><IoLogoLinkedin className='text-2xl xs:text-lg text-orange-600' /></Link>
                     </div>
                 </div>
-                <div className='flex items-center flex-wrap gap-3'>
-                    <p className='px-4 border-r'>Apple</p>
-                    <p className='px-4 border-r'>Apple Watch</p>
-                    <p className='px-4 border-r'>Apple TV</p>
-                    <p className='px-4 border-r'>iMac</p>
-                    <p className='px-4 border-r'>Camera</p>
-                    <p className='px-4 border-r'>Game Controller</p>
-                    <p className='px-4 border-r'>HD</p>
-                    <p className='px-4 border-r'>HTC</p>
-                    <p className='px-4 border-r'>HTC One</p>
-                    <p className='px-4 border-r'>iPhone</p>
-                    <p className='px-4 border-r'>iPod</p>
-                    <p className='px-4 border-r'>iPad</p>
-                    <p className='px-4 border-r'>Mac</p>
-                    <p className='px-4 border-r'>Lenovo</p>
-                    <p className='px-4 border-r'>Mouse</p>
-                    <p className='px-4 border-r'>Samsung</p>
-                    <p className='px-4 border-r'>Smart TV</p>
-                    <p className='px-4 border-r'>Tablet</p>
-                    <p className='px-4 border-r'>Samsung Galaxy M11</p>
-                    <p className='px-4 border-r'>Samsung Galaxy S10</p>
-                    <p className='px-4 border-r'>Samsung Galaxy S10+</p>
-                    <p className='px-4 border-r'>Wireless Speaker</p>
+                <div className='flex items-center xs:justify-center flex-wrap gap-3 xs:gap-2'>
+                    <p className='px-4 xs:px-2 border-r xs:border-gray-600 cursor-pointer hover:text-black text-gray-700'>Apple</p>
+                    <p className='px-4 xs:px-2 border-r xs:border-gray-600 cursor-pointer hover:text-black text-gray-700'>Apple Watch</p>
+                    <p className='px-4 xs:px-2 border-r xs:border-gray-600 cursor-pointer hover:text-black text-gray-700'>Apple TV</p>
+                    <p className='px-4 xs:px-2 border-r xs:border-gray-600 cursor-pointer hover:text-black text-gray-700'>iMac</p>
+                    <p className='px-4 xs:px-2 border-r xs:border-gray-600 cursor-pointer hover:text-black text-gray-700'>Camera</p>
+                    <p className='px-4 xs:px-2 border-r xs:border-gray-600 cursor-pointer hover:text-black text-gray-700'>Game Controller</p>
+                    <p className='px-4 xs:px-2 border-r xs:border-gray-600 cursor-pointer hover:text-black text-gray-700'>HD</p>
+                    <p className='px-4 xs:px-2 border-r xs:border-gray-600 cursor-pointer hover:text-black text-gray-700'>HTC</p>
+                    <p className='px-4 xs:px-2 border-r xs:border-gray-600 cursor-pointer hover:text-black text-gray-700'>HTC One</p>
+                    <p className='px-4 xs:px-2 border-r xs:border-gray-600 cursor-pointer hover:text-black text-gray-700'>iPhone</p>
+                    <p className='px-4 xs:px-2 border-r xs:border-gray-600 cursor-pointer hover:text-black text-gray-700'>iPod</p>
+                    <p className='px-4 xs:px-2 border-r xs:border-gray-600 cursor-pointer hover:text-black text-gray-700'>iPad</p>
+                    <p className='px-4 xs:px-2 border-r xs:border-gray-600 cursor-pointer hover:text-black text-gray-700'>Mac</p>
+                    <p className='px-4 xs:px-2 border-r xs:border-gray-600 cursor-pointer hover:text-black text-gray-700'>Lenovo</p>
+                    <p className='px-4 xs:px-2 border-r xs:border-gray-600 cursor-pointer hover:text-black text-gray-700'>Mouse</p>
+                    <p className='px-4 xs:px-2 border-r xs:border-gray-600 cursor-pointer hover:text-black text-gray-700'>Samsung</p>
+                    <p className='px-4 xs:px-2 border-r xs:border-gray-600 cursor-pointer hover:text-black text-gray-700'>Smart TV</p>
+                    <p className='px-4 xs:px-2 border-r xs:border-gray-600 cursor-pointer hover:text-black text-gray-700'>Tablet</p>
+                    <p className='px-4 xs:px-2 border-r xs:border-gray-600 cursor-pointer hover:text-black text-gray-700'>Samsung Galaxy M11</p>
+                    <p className='px-4 xs:px-2 border-r xs:border-gray-600 cursor-pointer hover:text-black text-gray-700'>Samsung Galaxy S10</p>
+                    <p className='px-4 xs:px-2 border-r xs:border-gray-600 cursor-pointer hover:text-black text-gray-700'>Samsung Galaxy S10+</p>
+                    <p className='px-4 xs:px-2 border-r xs:border-gray-600 cursor-pointer hover:text-black text-gray-700'>Wireless Speaker</p>
                 </div>
             </div>
             <hr />
-            <footer className='px-[80px] max-w-[1920px] mx-auto py-4 flex justify-between items-center'>
-                <p className='text-sm'>Copyright 2022 &copy; Gadget Stock All right reserved</p>
-                <img className=' h-6' src={payment} alt="" />
+            <footer className='px-[80px] xs:px-4 sm:px-10 max-w-[1920px] mx-auto py-4 flex justify-between items-center xs:flex-col'>
+                <p className='text-sm xs:text-xs'>Copyright 2022 &copy; Gadget Stock All right reserved</p>
+                <img className='h-6 xs:w-full' src={payment} alt="" />
             </footer>
         </div>
     );
