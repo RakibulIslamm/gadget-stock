@@ -83,6 +83,7 @@ const useFirebase = () => {
                     .then(() => {
                         toast.success('Verification Mail Sent Your Email');
                     });
+                navigate('/')
                 reset();
             })
             .catch((error) => {

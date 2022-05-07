@@ -1,12 +1,14 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import useAuth from '../hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 
 const AddProduct = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     const { user } = useAuth();
+    const navigate = useNavigate()
 
     const onSubmit = data => {
         const product = { ...data, email: user.email };
@@ -19,6 +21,7 @@ const AddProduct = () => {
             .then(result => {
                 if (result.insertedId) {
                     toast('Product Added');
+                    navigate('/my-product')
                     reset();
                 }
             })
