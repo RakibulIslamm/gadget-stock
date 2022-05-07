@@ -12,7 +12,7 @@ const SingleItem = ({ product }) => {
                 <div className='px-10 pt-10'>
                     <h2 className='text-xl font-semibold pb-2'>{name}</h2>
                     <p className=' text-sm py-2'>{shortDesc.slice(0, 70)} ...</p>
-                    <p className=' absolute top-5 left-0 bg-red-500 text-white px-3 py-1 text-sm font-light'>{category}</p>
+                    <p className=' absolute top-5 left-0 bg-red-300 text-black px-3 py-1 text-sm font-light'>{category}</p>
                     <p className='text-xs font-semibold'>by {supplierName}</p>
                     <div className='flex justify-between items-center py-3'>
                         <p>${price}</p>

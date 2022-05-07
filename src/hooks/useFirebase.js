@@ -27,7 +27,7 @@ const useFirebase = () => {
             .then((result) => {
                 setUser(result.user)
                 const url = location?.state?.from || '/';
-                fetch('http://localhost:5000/login', {
+                fetch('https://gadget-stock.herokuapp.com/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email })

@@ -22,10 +22,6 @@ const Register = () => {
         signUp(email, pass, name, reset, navigate)
     };
 
-    console.log(user?.displayName);
-
-    console.log(error);
-
     return (
         <div>
             <div className='flex justify-center items-center min-h-screen py-36 -mt-20'>

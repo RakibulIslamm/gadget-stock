@@ -8,7 +8,7 @@ import { ScaleLoader } from 'react-spinners';
 const Login = () => {
     const [email, setEmail] = useState('')
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    const { googleSignIn, login, resetPassword, error, setError, isLoading } = useAuth();
+    const { user, googleSignIn, setUser, login, resetPassword, error, setError, isLoading } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
     let from = location.state?.from?.pathname || "/";
@@ -27,10 +27,24 @@ const Login = () => {
     };
 
     // Handled Google SignIn
-    const googleLogin = () => {
-        googleSignIn()
+    const googleLogin = async () => {
+        await googleSignIn()
             .then((result) => {
-                navigate(from, { replace: true });
+                setUser(result.user)
+                fetch('https://gadget-stock.herokuapp.com/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: result.user.email })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(result.user.email);
+                        localStorage.setItem('token', data.token);
+                        navigate(from, { replace: true });
+                    })
+            })
+            .catch(err => {
+                setError(err.message);
             })
     }
 

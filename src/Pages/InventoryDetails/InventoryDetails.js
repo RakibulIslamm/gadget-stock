@@ -7,7 +7,7 @@ const InventoryDetails = () => {
     const { id } = useParams();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/products/${id}`)
+        fetch(`https://gadget-stock.herokuapp.com/products/${id}`)
             .then(res => res.json())
             .then(data => {
                 setProduct(data);
@@ -20,7 +20,7 @@ const InventoryDetails = () => {
         e.preventDefault();
         const stockQuantity = e.target.quantity.value;
         const totalStock = parseInt(quantity) + parseInt(stockQuantity);
-        fetch(`http://localhost:5000/products/${_id}`, {
+        fetch(`https://gadget-stock.herokuapp.com/products/${_id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -40,7 +40,7 @@ const InventoryDetails = () => {
     // Handled Delivery
     const handleDelivered = () => {
         const totalStock = parseInt(quantity) - 1;
-        fetch(`http://localhost:5000/products/${_id}`, {
+        fetch(`https://gadget-stock.herokuapp.com/products/${_id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -72,13 +72,13 @@ const InventoryDetails = () => {
                         <p className='text-xl font-bold border-r xs:border-0 pr-5'>Price: ${price}</p>
                         <p className={`text-lg font-semibold px-5 xs:p-0 border-r xs:border-0 ${quantity <= 3 ? 'text-red-600' : 'text-green-600'}`}>{quantity === 0 ? 'Sold Out' : quantity === 1 ? quantity + ' Item Left' : quantity + ' Items Left'}</p>
                         {
-                            quantity <= 0 ? <button className='px-5 py-2 text-center bg-gray-300 mx-5 xs:mx-0 cursor-not-allowed' disabled>Delivered</button> : <button onClick={handleDelivered} className='px-5 py-2 text-center bg-yellow-400 active:bg-yellow-200 mx-5 xs:mx-0'>Delivered</button>
+                            quantity <= 0 ? <button className='px-5 py-2 text-center bg-gray-300 mx-5 xs:mx-0 cursor-not-allowed' disabled>Delivered</button> : <button onClick={handleDelivered} className='px-5 py-2 text-center bg-orange-600 text-white active:bg-orange-300 mx-5 xs:mx-0'>Delivered</button>
                         }
                     </div>
                     <form onSubmit={handleRestock}>
                         <label htmlFor="quantity" className='font-semibold'>Restock Item</label><br />
                         <input className='border py-2 px-3 my-2' type="text" name='quantity' placeholder='Add Quantity' required />
-                        <button className='px-5 py-2 text-center bg-yellow-400' type='submit'>stock</button>
+                        <button className='px-5 py-2 text-center bg-orange-600 text-white' type='submit'>stock</button>
                     </form>
                 </div>
             </div>

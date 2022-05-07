@@ -11,7 +11,7 @@ const MyProduct = () => {
     const { user, logOut } = useAuth();
 
     useEffect(() => {
-        fetch('http://localhost:5000/my-products', {
+        fetch('https://gadget-stock.herokuapp.com/my-products', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ const MyProduct = () => {
     const handleDelete = (id) => {
         const handleAlert = (close, confirmation) => {
             if (confirmation) {
-                fetch(`http://localhost:5000/products/${id}`, {
+                fetch(`https://gadget-stock.herokuapp.com/products/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

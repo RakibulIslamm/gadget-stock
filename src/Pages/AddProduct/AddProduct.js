@@ -12,7 +12,7 @@ const AddProduct = () => {
 
     const onSubmit = data => {
         const product = { ...data, email: user.email };
-        fetch('http://localhost:5000/products', {
+        fetch('https://gadget-stock.herokuapp.com/products', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(product)
@@ -118,7 +118,7 @@ const AddProduct = () => {
                     </label>
                     <input {...register("supplierName", { required: true })} className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" value={user.displayName} name='displayName' />
                 </div>
-                <button className='py-2 text-center bg-yellow-400 relative block w-full' type='submit'>Add</button>
+                <button className='py-2 text-center bg-orange-600 text-white relative block w-full' type='submit'>Add</button>
             </form>
         </div>
     );
