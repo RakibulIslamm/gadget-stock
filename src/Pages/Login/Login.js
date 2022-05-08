@@ -8,7 +8,7 @@ import { ScaleLoader } from 'react-spinners';
 const Login = () => {
     const [email, setEmail] = useState('')
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    const { user, googleSignIn, setUser, login, resetPassword, error, setError, isLoading } = useAuth();
+    const { googleSignIn, setUser, login, resetPassword, error, setError, isLoading } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
     let from = location.state?.from?.pathname || "/";
@@ -38,7 +38,6 @@ const Login = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(result.user.email);
                         localStorage.setItem('token', data.token);
                         navigate(from, { replace: true });
                     })
@@ -54,11 +53,11 @@ const Login = () => {
     }
 
     return (
-        <div className='flex justify-center items-center min-h-screen py-36 -mt-20'>
-            <div className='w-4/12'>
+        <div className='flex justify-center items-center min-h-screen py-36 -mt-20 xs:px-4 sm:px-10'>
+            <div className='w-4/12 xs:w-full sm:w-full'>
                 <h1 className='text-2xl font-semibold text-center py-4'>Please Login</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="bg-white shadow-md rounded border border-gray-200 px-8 pt-6 pb-8 mb-4 flex flex-col">
+                    <div className="bg-white shadow-md rounded border border-gray-200 px-8 xs:px-4 py-6 xs:py-4 mb-4 flex flex-col">
                         <div className="mb-4">
                             <label className="block text-grey-darker text-sm font-bold mb-2">
                                 Email
@@ -78,7 +77,7 @@ const Login = () => {
                                 Forgot Password?
                             </button>
                         </div>
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-between gap-4">
                             <button className="bg-blue-500 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded" type="submit">
                                 {isLoading ? <ScaleLoader color='#fff' height={10} speedMultiplier={2} /> : 'Login'}
                             </button>

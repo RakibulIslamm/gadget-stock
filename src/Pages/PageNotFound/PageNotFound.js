@@ -3,7 +3,7 @@ import img404 from '../../images/—Pngtree—error 404 page not found_5768129.p
 
 const PageNotFound = () => {
     return (
-        <div className=' w-full h-screen flex justify-center items-center border-b'>
+        <div className=' w-full h-screen flex justify-center items-center'>
             <img className='w-[400px]' src={img404} alt="" />
         </div>
     );

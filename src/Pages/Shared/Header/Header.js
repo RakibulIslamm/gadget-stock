@@ -27,6 +27,9 @@ const Header = () => {
                         {!user && <CustomLink to='/login'>Login</CustomLink>}
                         {!user && <CustomLink to='/register'>Register</CustomLink>}
                     </div>
+                    <div className='hidden xs:block'>
+                        {!user && <CustomLink to='/login'>Login</CustomLink>}
+                    </div>
                     {
                         user &&
                         <div className='flex items-center gap-3'>

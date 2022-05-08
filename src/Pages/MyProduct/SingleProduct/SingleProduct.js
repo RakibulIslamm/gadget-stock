@@ -20,7 +20,7 @@ const SingleProduct = ({ product, handleDelete }) => {
                         </Link>
                     </td>
                     <td className="px-6 py-4">
-                        <p className="text-gray-500 text-sm font-semibold tracking-wide"> {price} </p>
+                        <p className="text-gray-500 text-sm font-semibold tracking-wide"> ${price} </p>
                     </td>
                     <td className="px-6 py-4">
                         <p className="text-gray-500 text-sm font-semibold tracking-wide text-center"> {quantity} </p>
